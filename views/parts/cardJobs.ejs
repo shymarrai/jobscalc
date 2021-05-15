@@ -1,0 +1,38 @@
+<div class="card <%= status %>" data-id="<%= id %>">
+  <div class="id column"><%= id %></div>
+  <div class="name column">
+
+
+    
+    <%= name %> 
+    
+    
+  </div>
+  <div class="deadline column">
+    <span>Prazo</span>
+    <% if(status === 'progress'){%>
+      <p> <%= remaining %>  dias para a entrega</p>
+    <% } else { %>
+      Prazo Encerrado
+      <% } %>
+  </div>
+  <div class="amount column">
+    <span>Valor</span>
+    <p>R$ <%= budget %> </p>
+  </div>
+  <div class="status badge column">
+    <%= status === 'done'? 'Encerrado' : "Em andamento" %> 
+  </div>
+  <div class="actions column flex">
+    <p class="sr-only">Ações</p>
+    <a 
+      href="/job/delete/<%= id %>" 
+      class="button white edit" 
+      title="Editar Job">
+      <img src="/images/edit-24.svg" alt="Editar Job" />
+    </a>
+    <button class="delete button white" title="Excluir Job">
+      <img src="/images/trash-24.svg" alt="Excluir Job" />
+    </button>
+  </div>
+</div>

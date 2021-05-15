@@ -29,12 +29,12 @@
       <div class="container">
         <section id="top" class="animate-up">
           <h2 class="sr-only">Homepage</h2>
-          <img id="logo" src="./images/logo.svg" alt="Logo" />
+          <img id="logo" src="/images/logo.svg" alt="Logo" />
           <span id="notification">
-            <img src="./images/alert-octagon.svg" alt="Alerta" />
+            <img src="/images/alert-octagon.svg" alt="Alerta" />
             Você tem 2 horas livres no seu dia
           </span>
-          <a href="profile.html" id="avatar-profile">
+          <a href="/profile" id="avatar-profile">
             <p>Jakeliny <span>Ver perfil</span></p>
             <img
               src="https://avatars.githubusercontent.com/u/17316392?s=460&u=6912a91a70bc89745a2079fdcdad3bc3ce370f13&v=4"
@@ -61,9 +61,9 @@
               Encerrados
             </div>
           </div>
-          <a class="button orange" href="job.html">
+          <a class="button orange" href="/job">
             <span>
-              <img src="./images/plus-24.svg" alt="Novo Job" /> 
+              <img src="/images/plus-24.svg" alt="Novo Job" /> 
             </span>
             Adicionar novo job
           </a>
@@ -76,66 +76,20 @@
         <h1 class="sr-only">Trabalhos</h1>
 
         <div class="cards">
-          <div class="card progress" data-id="1">
-            <div class="id column">1</div>
-            <div class="name column">
-              Pizzaria Guloso
-            </div>
-            <div class="deadline column">
-              <span>Prazo</span>
-              <p>3 dias para a entrega</p>
-            </div>
-            <div class="amount column">
-              <span>Valor</span>
-              <p>R$ 4500,00</p>
-            </div>
-            <div class="status badge column">
-              Em andamento
-            </div>
-            <div class="actions column flex">
-              <p class="sr-only">Ações</p>
-              <a 
-                href="job-edit.html" 
-                class="button white edit" 
-                title="Editar Job">
-                <img src="./images/edit-24.svg" alt="Editar Job" />
-              </a>
-              <button class="delete button white" title="Excluir Job">
-                <img src="./images/trash-24.svg" alt="Excluir Job" />
-              </button>
-            </div>
-          </div>
-          <!-- end card -->
 
-          <div class="card done" data-id="2">
-            <div class="id column">2</div>
-            <div class="name column">
-              OneTwo Project
-            </div>
-            <div class="deadline column">
-              <span>Prazo</span>
-              <p>3 dias para a entrega</p>
-            </div>
-            <div class="amount column">
-              <span>Valor</span>
-              <p>R$ 4500,00</p>
-            </div>
-            <div class="status badge column">
-              Encerrado
-            </div>
-            <div class="actions column flex">
-              <p class="sr-only">Ações</p>
-              <a 
-                href="job-edit.html" 
-                class="button white edit" 
-                title="Editar Job">
-                <img src="./images/edit-24.svg" alt="Editar Job" />
-              </a>
-              <button class="delete button white" title="Excluir Job">
-                <img src="./images/trash-24.svg" alt="Excluir Job" />
-              </button>
-            </div>
-          </div>
+
+          <% jobs.forEach((jobs) => {%>
+            <%- include('./parts/cardJobs', {id: jobs.id, name: jobs.name, created_at: jobs.created_at, remaining: jobs.remaining, budget: jobs.budget.toFixed(2).replace('.',','), status: jobs.status })  %>
+            <!-- end card
+                  id: lastId + 1,
+                  name: req.body.name,
+                  "daily-hours":req.body['daily-hours'] ,
+                  "total-hours": req.body['total-hours'],
+                  created_at : Date.now()
+            
+            -->
+          <%})%>
+
         </div>
         <!-- end cards -->
       </main>
@@ -144,11 +98,11 @@
 
     <div class="modal-wrapper">
       <div class="modal">
-        <img src="./images/trash-48.svg" alt="Excluir Job" title="Excluir Job" />
+        <img src="/images/trash-48.svg" alt="Excluir Job" title="Excluir Job" />
         <h3>Excluir Job</h3>
         <p>Quer mesmo excluir esse job? <br/>
         Ele será apagado para sempre.  
-        <p>
+        </p>
         <footer>
           <a 
             class="button gray" 

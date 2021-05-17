@@ -26,6 +26,8 @@ module.exports = {
   },
   async show(req,res){
     let jobs = await Job.get()
+    let profile = await Profile.get()
+
     const id = req.params.id
     
     const job = jobs.find(job => Number(job.id) === Number(id))
@@ -33,7 +35,7 @@ module.exports = {
       return res.send('Job not found!')
     }
     
-    job.budget = JobUtils.calculateBudget(job,await Profile.get()['value-hour'])
+    const budget = JobUtils.calculateBudget(job, profile['value-hour'])
     return res.render('job-edit', { job, budget})
   },
   async update(req,res){
